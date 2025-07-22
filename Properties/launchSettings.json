@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "WinUi_Inventory_Management (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "WinUi_Inventory_Management (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
