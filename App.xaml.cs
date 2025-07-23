@@ -9,7 +9,7 @@ namespace WinUi_Inventory_Management
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
-    public partial class App : System.Net.Mime.MediaTypeNames.Application
+    public partial class App : Microsoft.UI.Xaml.Application
     {
         private Window? _window;
 
@@ -23,7 +23,7 @@ namespace WinUi_Inventory_Management
         }
 
         /// <summary>
-        /// Invoked when the application is launched.
+        /// Invoked when the application is launcheded.
         /// </summary>
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
