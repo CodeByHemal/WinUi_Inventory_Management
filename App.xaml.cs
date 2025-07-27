@@ -2,6 +2,7 @@
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 using Microsoft.UI.Xaml;
+using WinUi_Inventory_Management.Winui_Activities;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace WinUi_Inventory_Management
@@ -28,8 +29,9 @@ namespace WinUi_Inventory_Management
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            _window = new MainWindow();
+            _window = new SplashScreen();
             _window.Activate();
         }
+        
     }
 }
