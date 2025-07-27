@@ -10,6 +10,6 @@
 
     <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="Welcome to the Inventory Management System" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-        <ProgressRing IsActive="True" Width="100" Height="100"/>
+        <ProgressBar Width="100" Height="100" x:Name="LoadingBar" Minimum="0" Maximum="100" Value="0"/>
     </StackPanel>
 </Page>

@@ -27,12 +27,22 @@ public sealed partial class SplashPage : Page
     public SplashPage()
     {
         InitializeComponent();
-        NavigateToHomePage();
+        StartProgressingAsync();
     }
 
-   private async void NavigateToHomePage()
+   private void NavigateToHomePage()
     {
-        await Task.Delay(3000);
         Frame.Navigate(typeof(HomePage));
+    }
+
+    private async void StartProgressingAsync()
+    {
+        for (int i = 0; i<= 100; i++)
+        {
+            LoadingBar.Value = i;
+            await Task.Delay(30);
+        }
+
+        NavigateToHomePage();
     }
 }
