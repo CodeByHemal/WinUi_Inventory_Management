@@ -8,8 +8,16 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <TextBlock Text="Welcome to the Inventory Management System" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-        <ProgressBar Width="100" Height="100" x:Name="LoadingBar" Minimum="0" Maximum="100" Value="0"/>
-    </StackPanel>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Margin="10,10,0,0">Retail Rythm</TextBlock>
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Image Source="/Assets/Splash_Logo.png" Height="200" Width="200" />
+            <ProgressBar x:Name="LoadingBar" Minimum="0" Maximum="100" Value="0" Width="220" Height="20"/>
+        </StackPanel>
+    </Grid>
 </Page>
