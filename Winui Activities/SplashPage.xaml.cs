@@ -20,22 +20,19 @@ using System.Threading.Tasks;
 namespace WinUi_Inventory_Management.Winui_Activities;
 
 /// <summary>
-/// An empty window that can be used on its own or navigated to within a Frame.
+/// An empty page that can be used on its own or navigated to within a Frame.
 /// </summary>
-public sealed partial class SplashScreen : Window
+public sealed partial class SplashPage : Page
 {
-    public SplashScreen()
+    public SplashPage()
     {
         InitializeComponent();
-        ShowMainWindowAfterDelay();
+        NavigateToHomePage();
     }
 
-    private async void ShowMainWindowAfterDelay()
+   private async void NavigateToHomePage()
     {
         await Task.Delay(3000);
-        new MainWindow().Activate();
-        this.Close();
+        Frame.Navigate(typeof(HomePage));
     }
-
-  
 }

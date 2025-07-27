@@ -29,7 +29,7 @@ namespace WinUi_Inventory_Management
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            _window = new SplashScreen();
+            _window = new MainWindow();
             _window.Activate();
         }
         
