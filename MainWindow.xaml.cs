@@ -18,6 +18,7 @@ namespace WinUi_Inventory_Management
     public sealed partial class MainWindow : Window
     {
         private AppWindow _appWindow;
+
         public MainWindow()
         {
             this.InitializeComponent();
@@ -26,6 +27,8 @@ namespace WinUi_Inventory_Management
             var windowId = Win32Interop.GetWindowIdFromWindow(hwnd);
             _appWindow = AppWindow.GetFromWindowId(windowId);
 
+
+            _appWindow.SetIcon("Assets/Title Bar Icon.ico");
             // Match with dark theme background (recommended values)
             var titleBar = _appWindow.TitleBar;
             titleBar.BackgroundColor = Windows.UI.Color.FromArgb(255, 32, 32, 32);  // near WinUI dark background

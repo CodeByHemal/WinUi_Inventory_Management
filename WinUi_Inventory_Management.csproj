@@ -13,7 +13,15 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="App.xaml" />
+    <None Remove="Winui Activities\DashboardPage.xaml" />
     <None Remove="Winui Activities\HomePage.xaml" />
+    <None Remove="Winui Activities\InvoicePage.xaml" />
+    <None Remove="Winui Activities\LoginPage.xaml" />
+    <None Remove="Winui Activities\MainLayoutPage.xaml" />
+    <None Remove="Winui Activities\OrdersPage.xaml" />
+    <None Remove="Winui Activities\SettingsPage.xaml" />
+    <None Remove="Winui Activities\SignupPage.xaml" />
     <None Remove="Winui Activities\SplashPage.xaml" />
   </ItemGroup>
 
@@ -42,6 +50,46 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4654" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.7.250606001" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Winui Activities\SettingsPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Winui Activities\InvoicePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Winui Activities\MainLayoutPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Winui Activities\OrdersPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Winui Activities\DashboardPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Winui Activities\SignupPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="Winui Activities\LoginPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="Winui Activities\HomePage.xaml">

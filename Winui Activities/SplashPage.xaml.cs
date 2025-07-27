@@ -30,19 +30,15 @@ public sealed partial class SplashPage : Page
         StartProgressingAsync();
     }
 
-   private void NavigateToHomePage()
-    {
-        Frame.Navigate(typeof(HomePage));
-    }
 
     private async void StartProgressingAsync()
     {
-        for (int i = 0; i<= 100; i++)
+        for (int i = 1; i<= 100; i++)
         {
             LoadingBar.Value = i;
-            await Task.Delay(30);
+            await Task.Delay(20);
         }
 
-        NavigateToHomePage();
+        Frame.Navigate(typeof(LoginPage));
     }
 }

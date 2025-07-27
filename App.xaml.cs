@@ -1,37 +1,40 @@
-﻿// To learn more about WinUI, the WinUI project structure,
-// and more about our project templates, see: http://aka.ms/winui-project-info.
-
 using Microsoft.UI.Xaml;
-using WinUi_Inventory_Management.Winui_Activities;
-using static System.Net.Mime.MediaTypeNames;
+using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Controls.Primitives;
+using Microsoft.UI.Xaml.Data;
+using Microsoft.UI.Xaml.Input;
+using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Navigation;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
+using Windows.Foundation;
+using Windows.Foundation.Collections;
+
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace WinUi_Inventory_Management
 {
     /// <summary>
-    /// Provides application-specific behavior to supplement the default Application class.
+    /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public partial class App : Microsoft.UI.Xaml.Application
+    public sealed partial class App : Application
     {
-        private Window? _window;
+        Window? _window;
 
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public App()
         {
             InitializeComponent();
         }
 
-        /// <summary>
-        /// Invoked when the application is launched.
-        /// </summary>
-        /// <param name="args">Details about the launch request and process.</param>
-        protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
+
+        protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            _window = new MainWindow();
+            _window = new MainWindow(); // <- your main window
             _window.Activate();
         }
-        
     }
 }
