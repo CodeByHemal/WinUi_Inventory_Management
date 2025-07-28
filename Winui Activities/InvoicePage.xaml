@@ -9,23 +9,68 @@
     mc:Ignorable="d">
 
     <Grid Padding="30">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
 
-        <TextBlock Grid.Column="0" FontSize="{StaticResource TitleTextBlockFontSize}" FontWeight="SemiBold">Invoices</TextBlock>
-        <Border Width="60" Height="60"
-BorderBrush="White"
-BorderThickness="1"
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Column="0" FontSize="{StaticResource TitleTextBlockFontSize}" FontWeight="SemiBold">Invoices</TextBlock>
+            <Border Width="60" Height="60"
+                BorderBrush="White"
+                BorderThickness="1"
 
-CornerRadius="60"
-Margin="0,0,0,10"
-HorizontalAlignment="Right"
-VerticalAlignment="Top">
-            <Image Source="/Assets/user_profile.png"
+                CornerRadius="60"
+                Margin="0,0,0,10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Top">
+                <Image Source="/Assets/user_profile.png"
            Width="60" Height="60"
    />
-        </Border>
+            </Border>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Border
+            Width="300"
+            Padding="20"
+            Margin="10"
+            CornerRadius="12"
+            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+    
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top">
+
+                <StackPanel Spacing="10">
+                    <!-- Icon/Image -->
+                    <Image Source="/Assets/sample_icon.png" Width="48" Height="48" HorizontalAlignment="Left"/>
+
+                    <!-- Title -->
+                    <TextBlock Text="Card Title"
+                   FontSize="20"
+                   FontWeight="SemiBold"
+                   Foreground="{ThemeResource TextFillColorPrimaryBrush}"/>
+
+                    <!-- Subtitle or Description -->
+                    <TextBlock Text="This is a short description of the card."
+                   FontSize="14"
+                   Foreground="{ThemeResource TextFillColorSecondaryBrush}"
+                   TextWrapping="WrapWholeWords"/>
+
+                    <!-- Action Button -->
+                    <Button Content="Action"
+                Style="{StaticResource AccentButtonStyle}"
+                Margin="0,10,0,0"
+                HorizontalAlignment="Left"/>
+                </StackPanel>
+            </Border>
+
+        </Grid>
+        
     </Grid>
 </Page>
