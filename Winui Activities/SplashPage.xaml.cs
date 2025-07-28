@@ -36,7 +36,7 @@ public sealed partial class SplashPage : Page
         for (int i = 1; i<= 100; i++)
         {
             LoadingBar.Value = i;
-            await Task.Delay(20);
+            await Task.Delay(10);
         }
 
         Frame.Navigate(typeof(LoginPage));

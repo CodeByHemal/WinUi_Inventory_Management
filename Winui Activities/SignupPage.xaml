@@ -32,9 +32,9 @@
 
                 <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Fullname" PlaceholderText="Neel Pandya" Width="320" Height="60" Margin="0,20,0,0"></TextBox>
                 <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Email" PlaceholderText="neelpandya2601@gmail.com" Margin="0,20,0,0" Width="320" Height="60"></TextBox>
-                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Password" PlaceholderText="DummytPassword" Margin="0,20,0,0" Width="320" Height="60"></TextBox>
+                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Password" PlaceholderText="neel@123" Margin="0,20,0,0" Width="320" Height="60"></TextBox>
 
-                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Confirm Password" PlaceholderText="DummytPassword" Margin="0,20,0,0" Width="320" Height="60"></TextBox>
+                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Confirm Password" PlaceholderText="neel@123" Margin="0,20,0,0" Width="320" Height="60"></TextBox>
 
                 <Button  Style="{StaticResource AccentButtonStyle}" Margin="0,20,0,0" HorizontalAlignment="Stretch">Create new account</Button>
                 <Grid HorizontalAlignment="Center">
