@@ -9,23 +9,163 @@
     mc:Ignorable="d">
 
     <Grid Padding="30">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="auto"/>
-        </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="0" FontSize="{StaticResource TitleTextBlockFontSize}" FontWeight="SemiBold">Orders</TextBlock>
-        <Border Width="60" Height="60"
-BorderBrush="White"
-BorderThickness="1"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
 
-CornerRadius="60"
-Margin="0,0,0,10"
-HorizontalAlignment="Right"
-VerticalAlignment="Top">
-            <Image Source="/Assets/user_profile.png"
-           Width="60" Height="60"
-   />
-        </Border>
+        <Grid Grid.Row="0"  VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.50*"/>
+            </Grid.ColumnDefinitions>
+
+
+            <TextBlock Text="Orders" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            
+            <Border Width="60" Height="60" Grid.Column="2" VerticalAlignment="Center"
+             BorderBrush="White"
+             BorderThickness="1"
+
+             CornerRadius="60"
+             Margin="0,0,0,10"
+             HorizontalAlignment="Center"
+             >
+                <Image Source="/Assets/user_profile.png"
+        Width="60" Height="60"
+/>
+            </Border>
+
+        </Grid>
+
+        <Grid Grid.Row="1"  VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.50*"/>
+            </Grid.ColumnDefinitions>
+            
+            
+            <StackPanel Grid.Column="0" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="0,20,0,0" Spacing="10">
+                <!-- Card 1 -->
+                <Border Background="#333333"
+                CornerRadius="8"
+                Padding="16"
+                Width="650">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <!-- Item Name -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Price -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Quantity Stepper -->
+                            <ColumnDefinition Width="Auto" />
+                            <!-- Delete Button -->
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Momos" Foreground="White" VerticalAlignment="Center" FontSize="16" />
+                        <TextBlock Grid.Column="1" Text="200" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                            <TextBlock Text="2" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
+                            <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                        </StackPanel>
+
+                        <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
+                        </Button>
+                    </Grid>
+                </Border>
+
+                <!-- Card 2 -->
+                <Border Background="#333333"
+                CornerRadius="8"
+                Padding="16"
+                Width="650">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Momos" Foreground="White" VerticalAlignment="Center" FontSize="16" />
+                        <TextBlock Grid.Column="1" Text="200" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                            <TextBlock Text="2" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
+                            <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                        </StackPanel>
+
+                        <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
+                        </Button>
+                    </Grid>
+                </Border>
+                
+               <!--Card 3-->
+                <Border Background="#333333"
+           CornerRadius="8"
+           Padding="16"
+           Width="650">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Text="Momos" Foreground="White" VerticalAlignment="Center" FontSize="16" />
+                        <TextBlock Grid.Column="1" Text="200" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
+
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
+                            <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                            <TextBlock Text="2" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
+                            <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                        </StackPanel>
+
+                        <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
+                        </Button>
+                    </Grid>
+                </Border>
+
+            </StackPanel>
+            
+            
+            <Grid Grid.Column="1">
+
+                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" >
+
+
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Product Name" PlaceholderText="Neel Pandya" Width="320" Height="60"></TextBox>
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Price" PlaceholderText="neelpandya2601@gmail.com" Margin="0,10,0,0" Width="320" Height="60"></TextBox>
+                    <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Quantity" PlaceholderText="neel@123" Margin="0,10,0,0" Width="320" Height="60"></TextBox>
+                    <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Discount" PlaceholderText="neel@123" Margin="0,10,0,0" Width="320" Height="60"></TextBox>
+
+                    <Button  Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" HorizontalAlignment="Stretch">Add </Button>
+
+                    </StackPanel>
+
+            </Grid>
+        
+        </Grid>
+        
+        
+        <Grid Grid.Row="2"  VerticalAlignment="Bottom">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="0.50*"/>
+            </Grid.ColumnDefinitions>
+
+        </Grid>
     </Grid>
 </Page>
