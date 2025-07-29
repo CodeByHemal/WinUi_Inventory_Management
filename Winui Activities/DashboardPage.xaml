@@ -14,6 +14,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"  VerticalAlignment="Bottom">
@@ -163,6 +164,88 @@
 
                 </Border>
             </Grid>
+
+            
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+
+            <TextBlock Text="Recently Purchased" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Row="0" Margin="0,30,0,10"/>
+            
+            <!-- Divider Line -->
+    <Rectangle Grid.Row="1" Grid.ColumnSpan="3"
+               Height="1"
+               Fill="{StaticResource SystemChromeGrayColor}"
+               VerticalAlignment="Center"
+               Margin="0,0,0,10"/>
+            
+            <!-- Table Headers -->
+            <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Order Name" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                <TextBlock Text="Price" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Margin="5"/>
+                <TextBlock Text="Discount" FontWeight="Bold" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                <TextBlock Text="Total" FontWeight="Bold" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+            </Grid>
+
+            <StackPanel Grid.Row="3">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                    <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
+                    <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                    <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                </Grid>
+
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                    <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
+                    <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                    <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                </Grid>
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                    <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
+                    <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                    <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                </Grid>
+
+
+            </StackPanel>
+        
         </Grid>
     </Grid>
 
