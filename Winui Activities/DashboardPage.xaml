@@ -7,25 +7,25 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Padding="30">
 
-    <Grid Padding="30">
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto" />
-        </Grid.RowDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0"  VerticalAlignment="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="0.50*"/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Text="Dashboard" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <TextBlock Text="Welcome, Hemal" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
-            <Border Width="60" Height="60" Grid.Column="2" VerticalAlignment="Center"
+            <Grid Grid.Row="0"  VerticalAlignment="Bottom">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.50*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="Dashboard" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Text="Welcome, Hemal" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <Border Width="60" Height="60" Grid.Column="2" VerticalAlignment="Center"
              BorderBrush="White"
              BorderThickness="1"
 
@@ -33,220 +33,222 @@
              Margin="0,0,0,10"
              HorizontalAlignment="Center"
              >
-                <Image Source="/Assets/user_profile.png"
+                    <Image Source="/Assets/user_profile.png"
         Width="60" Height="60"
 />
-            </Border>
+                </Border>
 
-        </Grid>
+            </Grid>
 
-        <Grid Grid.Row="1"  VerticalAlignment="Center" Margin="0,30,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="0.25*"/>
-            </Grid.ColumnDefinitions>
-            
-            <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                <AutoSuggestBox x:Name="MyAutoSuggestBox" QueryIcon="Find" VerticalAlignment="Center" PlaceholderText="Search..." Width="1200"/>
-                <TextBlock x:Name="SearchResultsTextBlock" FontSize="16"/>
-            </StackPanel>
+            <Grid Grid.Row="1"  VerticalAlignment="Center" Margin="0,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="0.25*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <AutoSuggestBox x:Name="MyAutoSuggestBox" QueryIcon="Find" VerticalAlignment="Center" PlaceholderText="Search..." Width="1200"/>
+                    <TextBlock x:Name="SearchResultsTextBlock" FontSize="16"/>
+                </StackPanel>
 
 
-            <DropDownButton Grid.Column="2" Content="Email" VerticalAlignment="Top" HorizontalAlignment="Center" >
-                <DropDownButton.Flyout>
-                    <MenuFlyout Placement="Bottom">
-                        <MenuFlyoutItem Text="January"/>
-                        <MenuFlyoutItem Text="Febuary"/>
-                        <MenuFlyoutItem Text="March"/>
-                        <MenuFlyoutItem Text="April"/>
-                        <MenuFlyoutItem Text="May"/>
-                        <MenuFlyoutItem Text="June"/>
-                        <MenuFlyoutItem Text="July"/>
-                        <MenuFlyoutItem Text="August"/>
-                        <MenuFlyoutItem Text="September"/>
-                        <MenuFlyoutItem Text="October"/>
-                        <MenuFlyoutItem Text="November"/>
-                        <MenuFlyoutItem Text="December"/>
-                    </MenuFlyout>
-                </DropDownButton.Flyout>
-            </DropDownButton>
-        </Grid>
+                <DropDownButton Grid.Column="2" Content="Email" VerticalAlignment="Top" HorizontalAlignment="Center" >
+                    <DropDownButton.Flyout>
+                        <MenuFlyout Placement="Bottom">
+                            <MenuFlyoutItem Text="January"/>
+                            <MenuFlyoutItem Text="Febuary"/>
+                            <MenuFlyoutItem Text="March"/>
+                            <MenuFlyoutItem Text="April"/>
+                            <MenuFlyoutItem Text="May"/>
+                            <MenuFlyoutItem Text="June"/>
+                            <MenuFlyoutItem Text="July"/>
+                            <MenuFlyoutItem Text="August"/>
+                            <MenuFlyoutItem Text="September"/>
+                            <MenuFlyoutItem Text="October"/>
+                            <MenuFlyoutItem Text="November"/>
+                            <MenuFlyoutItem Text="December"/>
+                        </MenuFlyout>
+                    </DropDownButton.Flyout>
+                </DropDownButton>
+            </Grid>
 
-        <Grid Grid.Row="2"  VerticalAlignment="Center" Margin="0,30,0,0">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
+            <Grid Grid.Row="2"  VerticalAlignment="Center" Margin="0,30,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-            <Grid Grid.Column="0"
+                <Grid Grid.Column="0"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Center">
-                <Border
+                    <Border
                             Width="280"
                             Height="200"
                             Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}"
                             CornerRadius="12">
 
 
-                    <StackPanel
+                        <StackPanel
                             HorizontalAlignment="Center"
                             VerticalAlignment="Center"
                             Spacing="10">
 
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
-                        <TextBlock
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
+                            <TextBlock
                             Text="Product" Style="{StaticResource SubtitleTextBlockStyle}">
 
-                        </TextBlock>
-                        <TextBlock
+                            </TextBlock>
+                            <TextBlock
                             Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
-                        </TextBlock>
-                    </StackPanel>
+                            </TextBlock>
+                        </StackPanel>
 
-                </Border>
-            </Grid>
-            <Grid Grid.Column="1"
+                    </Border>
+                </Grid>
+                <Grid Grid.Column="1"
         HorizontalAlignment="Left"
         VerticalAlignment="Center">
-                <Border
+                    <Border
                 Width="280"
                 Height="200"
                 Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}"
                 CornerRadius="12">
 
 
-                    <StackPanel
+                        <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Spacing="10">
 
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
-                        <TextBlock
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
+                            <TextBlock
                 Text="Product" Style="{StaticResource SubtitleTextBlockStyle}">
 
-                        </TextBlock>
-                        <TextBlock
+                            </TextBlock>
+                            <TextBlock
                 Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
-                        </TextBlock>
-                    </StackPanel>
+                            </TextBlock>
+                        </StackPanel>
 
-                </Border>
-            </Grid>
+                    </Border>
+                </Grid>
 
-            <Grid Grid.Column="2    "
+                <Grid Grid.Column="2    "
         HorizontalAlignment="Left"
         VerticalAlignment="Center">
-                <Border
+                    <Border
                 Width="280"
                 Height="200"
                 Background="{ThemeResource AcrylicBackgroundFillColorBaseBrush}"
                 CornerRadius="12">
 
 
-                    <StackPanel
+                        <StackPanel
                 HorizontalAlignment="Center"
                 VerticalAlignment="Center"
                 Spacing="10">
 
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
-                        <TextBlock
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
+                            <TextBlock
                 Text="Product" Style="{StaticResource SubtitleTextBlockStyle}">
 
-                        </TextBlock>
-                        <TextBlock
+                            </TextBlock>
+                            <TextBlock
                 Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
-                        </TextBlock>
-                    </StackPanel>
+                            </TextBlock>
+                        </StackPanel>
 
-                </Border>
+                    </Border>
+                </Grid>
+
+
             </Grid>
 
-            
-        </Grid>
-
-        <Grid Grid.Row="3">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+            <Grid Grid.Row="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
 
 
-            <TextBlock Text="Recently Purchased" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Row="0" Margin="0,30,0,10"/>
-            
-            <!-- Divider Line -->
-    <Rectangle Grid.Row="1" Grid.ColumnSpan="3"
+                <TextBlock Text="Recently Purchased" Style="{StaticResource SubtitleTextBlockStyle}" Grid.Row="0" Margin="0,30,0,10"/>
+
+                <!-- Divider Line -->
+                <Rectangle Grid.Row="1" Grid.ColumnSpan="3"
                Height="1"
                Fill="{StaticResource SystemChromeGrayColor}"
                VerticalAlignment="Center"
                Margin="0,0,0,10"/>
-            
-            <!-- Table Headers -->
-            <Grid Grid.Row="2" Margin="0,10,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <TextBlock Text="Order Name" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="5"/>
-                <TextBlock Text="Price" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Margin="5"/>
-                <TextBlock Text="Discount" FontWeight="Bold" Grid.Row="1" Grid.Column="2" Margin="5"/>
-                <TextBlock Text="Total" FontWeight="Bold" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                <!-- Table Headers -->
+                <Grid Grid.Row="2" Margin="0,10,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Text="Order Name" FontWeight="Bold" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                    <TextBlock Text="Price" FontWeight="Bold" Grid.Row="1" Grid.Column="1" Margin="5"/>
+                    <TextBlock Text="Discount" FontWeight="Bold" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                    <TextBlock Text="Total" FontWeight="Bold" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                </Grid>
+
+                <StackPanel Grid.Row="3">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                        <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                        <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                    </Grid>
+
+                    <Grid Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                        <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                        <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                    </Grid>
+                    <Grid Margin="0,5,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
+                        <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
+                        <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
+                        <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
+
+                    </Grid>
+
+
+                </StackPanel>
 
             </Grid>
-
-            <StackPanel Grid.Row="3">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
-                    <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
-                    <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
-                    <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
-
-                </Grid>
-
-                <Grid Margin="0,5,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
-                    <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
-                    <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
-                    <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
-
-                </Grid>
-                <Grid Margin="0,5,0,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="Waffers" Grid.Row="1" Grid.Column="0" Margin="5"/>
-                    <TextBlock Text="499 Rs"  Grid.Row="1" Grid.Column="1" Margin="5"/>
-                    <TextBlock Text="100 Rs" Grid.Row="1" Grid.Column="2" Margin="5"/>
-                    <TextBlock Text="399 Rs" Grid.Row="1" Grid.Column="3" Margin="5"/>
-
-                </Grid>
-
-
-            </StackPanel>
-        
         </Grid>
-    </Grid>
+    </ScrollViewer>
+    
 
 </Page>
