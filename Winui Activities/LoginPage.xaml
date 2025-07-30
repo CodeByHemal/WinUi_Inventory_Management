@@ -29,10 +29,24 @@
             </Border>
             <TextBlock FontSize="{StaticResource SubtitleTextBlockFontSize}" FontWeight="SemiBold" Margin="0,20,0,0" HorizontalAlignment="center">Sign in to RetailRythm</TextBlock>
 
-            <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Email" PlaceholderText="neelpandya2601@gmail.com" Width="320" Height="60" Margin="0,20,0,0"></TextBox>
-
-            <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Password" PlaceholderText="neel@123" Margin="0,20,0,0" Width="320" Height="60"></TextBox>
-
+            <TextBox x:Name="EmailInput" FontSize="{StaticResource BodyTextBlockFontSize}" Header="Email" PlaceholderText="neelpandya2601@gmail.com" Width="320" Height="60" Margin="0,20,0,0"></TextBox>
+            
+            <TextBlock x:Name="EmailError"
+           Foreground="Red"
+           FontSize="12"
+           Margin="0,5,0,0"
+           Visibility="Collapsed"
+           Text="Please enter a valid email." />
+            
+            <PasswordBox x:Name="PasswordInput" FontSize="{StaticResource BodyTextBlockFontSize}" Header="Password" PlaceholderText="neel@123" Margin="0,20,0,0" Width="320" Height="60"></PasswordBox>
+            
+            <TextBlock x:Name="PasswordError"
+           Foreground="Red"
+           FontSize="12"
+           Margin="0,5,0,0"
+           Visibility="Collapsed"
+           Text="Password is required." />
+            
             <Button  Style="{StaticResource AccentButtonStyle}" Margin="0,20,0,0" HorizontalAlignment="Stretch" Click="Button_Click">Sign In</Button>
             <Grid HorizontalAlignment="Center">
                 <Grid.ColumnDefinitions>

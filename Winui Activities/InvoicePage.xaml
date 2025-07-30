@@ -54,12 +54,8 @@
                         </Grid.ColumnDefinitions>
 
                         <Image Source="/Assets/invoice_image.png" Grid.Column="0" Width="40" Height="40"/>
-                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                            <Hyperlink NavigateUri="https://google.com">
-                                Order1_invoice.pdf
-                            </Hyperlink>
-                        </TextBlock>
-                        <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
+                            <TextBlock Grid.Column="1" Text="Order1_invoice.pdf" VerticalAlignment="Center" Margin="20,0,0,0" />
+                            <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
                             <FontIcon Glyph="&#xE896;" FontSize="18"/>
                         </Button>
                     </Grid>
@@ -86,12 +82,8 @@ VerticalAlignment="Top">
                         </Grid.ColumnDefinitions>
 
                         <Image Source="/Assets/invoice_image.png" Grid.Column="0" Width="40" Height="40"/>
-                        <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                <Hyperlink NavigateUri="https://google.com">
-                    Order1_invoice.pdf
-                </Hyperlink>
-                        </TextBlock>
-                        <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
+                            <TextBlock Grid.Column="1" Text="Order1_invoice.pdf" VerticalAlignment="Center" Margin="20,0,0,0" />
+                            <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
                             <FontIcon Glyph="&#xE896;" FontSize="18"/>
                         </Button>
                     </Grid>
@@ -101,14 +93,14 @@ VerticalAlignment="Top">
 
                 <Grid>
                     <Border
-Width="800"
-Padding="20"
-Margin="10"
-CornerRadius="12"
-Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
+                        Width="800"
+                        Padding="20"
+                        Margin="10"
+                        CornerRadius="12"
+                        Background="{ThemeResource CardBackgroundFillColorDefaultBrush}"
     
-HorizontalAlignment="Left"
-VerticalAlignment="Top">
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Top">
 
                         <Grid VerticalAlignment="Center" >
                             <Grid.ColumnDefinitions>
@@ -118,11 +110,7 @@ VerticalAlignment="Top">
                             </Grid.ColumnDefinitions>
 
                             <Image Source="/Assets/invoice_image.png" Grid.Column="0" Width="40" Height="40"/>
-                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                <Hyperlink NavigateUri="https://google.com">
-                    Order1_invoice.pdf
-                </Hyperlink>
-                            </TextBlock>
+                            <TextBlock Grid.Column="1" Text="Order1_invoice.pdf" VerticalAlignment="Center" Margin="20,0,0,0" />
                             <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
                                 <FontIcon Glyph="&#xE896;" FontSize="18"/>
                             </Button>
@@ -150,11 +138,7 @@ VerticalAlignment="Top">
                             </Grid.ColumnDefinitions>
 
                             <Image Source="/Assets/invoice_image.png" Grid.Column="0" Width="40" Height="40"/>
-                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                <Hyperlink NavigateUri="https://google.com">
-                    Order1_invoice.pdf
-                </Hyperlink>
-                            </TextBlock>
+                            <TextBlock Grid.Column="1" Text="Order1_invoice.pdf" VerticalAlignment="Center" Margin="20,0,0,0" />
                             <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
                                 <FontIcon Glyph="&#xE896;" FontSize="18"/>
                             </Button>
@@ -182,11 +166,7 @@ VerticalAlignment="Top">
                             </Grid.ColumnDefinitions>
 
                             <Image Source="/Assets/invoice_image.png" Grid.Column="0" Width="40" Height="40"/>
-                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                                <Hyperlink NavigateUri="https://google.com">
-                                    Order1_invoice.pdf
-                                </Hyperlink>
-                            </TextBlock>
+                            <TextBlock Grid.Column="1" Text="Order1_invoice.pdf" VerticalAlignment="Center" Margin="20,0,0,0" />
                             <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
                                 <FontIcon Glyph="&#xE896;" FontSize="18"/>
                             </Button>
@@ -214,11 +194,7 @@ VerticalAlignment="Top">
                             </Grid.ColumnDefinitions>
 
                             <Image Source="/Assets/invoice_image.png" Grid.Column="0" Width="40" Height="40"/>
-                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                            <Hyperlink NavigateUri="https://google.com">
-                                Order1_invoice.pdf
-                            </Hyperlink>
-                            </TextBlock>
+                            <TextBlock Grid.Column="1" Text="Order1_invoice.pdf" VerticalAlignment="Center" Margin="20,0,0,0" />
                             <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
                                 <FontIcon Glyph="&#xE896;" FontSize="18"/>
                             </Button>
@@ -246,11 +222,7 @@ VerticalAlignment="Top">
                             </Grid.ColumnDefinitions>
 
                             <Image Source="/Assets/invoice_image.png" Grid.Column="0" Width="40" Height="40"/>
-                            <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                        <Hyperlink NavigateUri="https://google.com">
-                            Order1_invoice.pdf
-                        </Hyperlink>
-                            </TextBlock>
+                            <TextBlock Grid.Column="1" Text="Order1_invoice.pdf" VerticalAlignment="Center" Margin="20,0,0,0" />
                             <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center">
                                 <FontIcon Glyph="&#xE896;" FontSize="18"/>
                             </Button>

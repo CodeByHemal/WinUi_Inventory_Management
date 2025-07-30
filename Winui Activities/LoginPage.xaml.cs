@@ -1,14 +1,5 @@
-using CommunityToolkit.Mvvm.ComponentModel;
-using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System;
-
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-
-
-
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -28,69 +19,48 @@ namespace WinUi_Inventory_Management.Winui_Activities
         {
             Frame.Navigate(typeof(SignupPage));
         }
+     
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainLayoutPage));
+            string email = EmailInput.Text;
+            string password = PasswordInput.Password; // If PasswordBox used
+
+            bool hasError = false;
+
+            // Reset all error messages
+            EmailError.Visibility = Visibility.Collapsed;
+            PasswordError.Visibility = Visibility.Collapsed;
+
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                EmailError.Text = "Email is required.";
+                EmailError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+            else if (!email.Contains("@"))
+            {
+                EmailError.Text = "Please enter a valid email address.";
+                EmailError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+
+            // Password validation
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                PasswordError.Text = "Password is required.";
+                PasswordError.Visibility = Visibility.Visible;
+                hasError = true;
+            }
+
+
+            // Perform actual login check here (API call or local validation)
+            if (!hasError)
+            {
+                Frame.Navigate(typeof(MainLayoutPage));
+            }
         }
+
 
     }
 
-    //public partial class ValidationFormWidgetViewModel : ObservableValidator
-    //{
-    //    private readonly IDialogService DialogService;
-
-    //    public ValidationFormWidgetViewModel(IDialogService dialogService)
-    //    {
-    //        DialogService = dialogService;
-    //    }
-
-    //    public event EventHandler? FormSubmissionCompleted;
-    //    public event EventHandler? FormSubmissionFailed;
-
-    //    [ObservableProperty]
-    //    [Required]
-    //    [MinLength(2)]
-    //    [MaxLength(100)]
-    //    private string? firstName;
-
-    //    [ObservableProperty]
-    //    [Required]
-
-    //    [MinLength(2)]
-    //    [MaxLength(100)]
-    //    private string? lastName;
-
-    //    [ObservableProperty]
-    //    [Required]
-    //    [EmailAddress]
-    //    private string? email;
-
-    //    [ObservableProperty]
-    //    [Required]
-    //    [Phone]
-    //    private string? phoneNumber;
-
-    //    [RelayCommand]
-    //    private void Submit()
-    //    {
-    //        ValidateAllProperties();
-
-    //        if (HasErrors)
-    //        {
-    //            FormSubmissionFailed?.Invoke(this, EventArgs.Empty);
-    //        }
-    //        else
-    //        {
-    //            FormSubmissionCompleted?.Invoke(this, EventArgs.Empty);
-    //        }
-    //    }
-
-    //    [RelayCommand]
-    //    private void ShowErrors()
-    //    {
-    //        string message = string.Join(Environment.NewLine, GetErrors().Select(e => e.ErrorMessage));
-
-    //        _ = DialogService.ShowMessageDialogAsync("Validation errors", message);
-    //    }
-    //}
 }
