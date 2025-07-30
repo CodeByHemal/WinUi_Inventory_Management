@@ -141,19 +141,23 @@
             
             
             <Grid Grid.Column="1">
+                <Border Background="#333333"
+                        CornerRadius="8"
+                        Padding="20"
+                        Margin="0,20,0,0"
+                        Width="250">
+                    <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" >
 
-                <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" >
 
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Product Name" PlaceholderText="Meggie" Width="200" Margin="0,10,0,0" Height="60"></TextBox>
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Price" PlaceholderText="20" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Quantity" PlaceholderText="3" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Discount" PlaceholderText="20" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
 
-                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Product Name" PlaceholderText="Neel Pandya" Width="320" Height="60"></TextBox>
-                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Price" PlaceholderText="neelpandya2601@gmail.com" Margin="0,10,0,0" Width="320" Height="60"></TextBox>
-                    <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Quantity" PlaceholderText="neel@123" Margin="0,10,0,0" Width="320" Height="60"></TextBox>
-                    <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Discount" PlaceholderText="neel@123" Margin="0,10,0,0" Width="320" Height="60"></TextBox>
-
-                    <Button  Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" HorizontalAlignment="Stretch">Add </Button>
+                        <Button  Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" HorizontalAlignment="Stretch">Add</Button>
 
                     </StackPanel>
-
+                </Border>
             </Grid>
         
         </Grid>
@@ -166,6 +170,25 @@
                 <ColumnDefinition Width="0.50*"/>
             </Grid.ColumnDefinitions>
 
+            <Grid Grid.Column="1">
+                <Border Background="#333333"
+             CornerRadius="8"
+             Padding="20"
+             Margin="0,20,0,0"
+             Width="25   0">
+                    <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" >
+
+
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Product Name" PlaceholderText="Meggie" Width="200" Margin="0,10,0,0" Height="60"></TextBox>
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Price" PlaceholderText="20" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Quantity" PlaceholderText="3" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
+                        <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Discount" PlaceholderText="20" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
+
+                        <Button  Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" HorizontalAlignment="Stretch">Add</Button>
+
+                    </StackPanel>
+                </Border>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
