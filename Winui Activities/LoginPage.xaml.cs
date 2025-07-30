@@ -3,8 +3,10 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
+
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -26,14 +28,13 @@ namespace WinUi_Inventory_Management.Winui_Activities
         {
             Frame.Navigate(typeof(SignupPage));
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainLayoutPage));
         }
 
     }
-    
+
     //public partial class ValidationFormWidgetViewModel : ObservableValidator
     //{
     //    private readonly IDialogService DialogService;
