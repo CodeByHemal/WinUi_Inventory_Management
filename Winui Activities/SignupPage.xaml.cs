@@ -2,7 +2,6 @@
 using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Linq;
-using WinUi_Inventory_Management.Data.Models;
 
 
 // To learn more about WinUI, the WinUI project structure,
@@ -15,11 +14,13 @@ namespace WinUi_Inventory_Management.Winui_Activities
     /// </summary>
     public sealed partial class SignupPage : Page
     {
-       
+        AppDbContext _dbContext;
+
         public SignupPage()
         {
             InitializeComponent();
-            
+            _dbContext = new AppDbContext();
+
         }
 
         private void HyperlinkButton_Click(object sender, RoutedEventArgs e)
@@ -71,26 +72,18 @@ namespace WinUi_Inventory_Management.Winui_Activities
             // Perform actual login check here (API call or local validation)
             if (!hasError)
             {
-                using (var db = new AppDbContext())
+                var existingUser = _dbContext.Users.FirstOrDefault(u => u.Email == Email.Text);
+                if (existingUser != null)
                 {
-                    bool exists = db.Users.Any(u => u.Email == email);
-                    if (exists)
-                    {
-                        ShowMessage("Email is already registered.");
-                        return;
-                    }
-
-                    // Add new user
-                    var newUser = new User
-                    {
-                        Email = email,
-                        Password = password // 🔐 In production, hash this!
-                    };
-
-                    db.Users.Add(newUser);
-                    db.SaveChanges();
+                    // User already exists, show an error message
+                    EmailError.Visibility = Visibility.Visible;
+                    EmailError.Text = "User with this email already exists.";
+                    return;
                 }
-                Frame.Navigate(typeof(LoginPage));
+                _dbContext.Users.Add(new User { Email = Email.Text, FullName = FullName.Text, Password = Password.Password });
+                _dbContext.SaveChanges();
+                ShowMessage("User register successfully.");
+                //Frame.Navigate(typeof(LoginPage));
             }
         }
         private async void ShowMessage(string message)

@@ -33,6 +33,10 @@ namespace WinUi_Inventory_Management
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
+            
+            var context = new AppDbContext();
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
             _window = new MainWindow(); // <- your main window
             _window.Activate();
         }
