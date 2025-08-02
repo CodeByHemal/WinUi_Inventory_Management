@@ -25,7 +25,11 @@ namespace WinUi_Inventory_Management
 
             string connectionString = connectionTemplate.Replace("{DB_PATH}", dbFilePath);
 
-            // Auto-drop if .mdf is missing but LocalDB still has the database
+            // ✅ Auto-start LocalDB if it's not running
+            try { System.Diagnostics.Process.Start("sqllocaldb", "start MSSQLLocalDB"); }
+            catch { /* ignored */ }
+
+            // ✅ Drop orphaned DB if MDF is missing
             if (!File.Exists(dbFilePath))
             {
                 try
@@ -45,14 +49,15 @@ namespace WinUi_Inventory_Management
                 END";
                     cmd.ExecuteNonQuery();
                 }
-                catch
+                catch (Exception ex)
                 {
-                    // do nothing
+                    Console.WriteLine("⚠️ Failed to clean orphan DB: " + ex.Message);
                 }
             }
 
             optionsBuilder.UseSqlServer(connectionString);
         }
+
 
     }
     class User
