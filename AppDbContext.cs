@@ -15,7 +15,7 @@ namespace WinUi_Inventory_Management
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string connectionString = ConfigurationManager.ConnectionStrings["SampleDatabaseWalkthrough.Properties.Settings.SampleDatabaseConnectionString"].ConnectionString;
-            optionsBuilder.UseSqlite(connectionString);
+            optionsBuilder.UseSqlServer(connectionString);
         }
     }
     class User
