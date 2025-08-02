@@ -35,7 +35,6 @@ namespace WinUi_Inventory_Management
         {
             
             var context = new AppDbContext();
-            context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
             _window = new MainWindow(); // <- your main window
             _window.Activate();
