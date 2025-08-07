@@ -32,13 +32,14 @@
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
 
-            <Image Grid.Row="0" Height="100" Width="100" Source="/Assets/user_profile.png"/>
+                <Button Click="OnProfileImageClick" Background="Transparent" BorderThickness="0">
+                    <Image x:Name="ProfileImage" Height="100" Width="100" />
+                </Button>
+                <TextBox x:Name="FullName" Grid.Row="1" Width="320" Header="Fullname" PlaceholderText="Hemal Rashiya" Margin="0,25,0,0"></TextBox>
+            <TextBox x:Name="Email" Grid.Row="2" Width="320" Header="Email" PlaceholderText="hrasiya212@rku.ac.in" Margin="0,25,0,0"></TextBox>
+            <TextBox x:Name="Password" Grid.Row="3" Width="320" Header="Password" PlaceholderText="Hemal@123" Margin="0,25,0,0"></TextBox>
 
-            <TextBox Grid.Row="1" Width="320" Header="Fullname" PlaceholderText="Hemal Rashiya" Margin="0,25,0,0"></TextBox>
-            <TextBox Grid.Row="2" Width="320" Header="Email" PlaceholderText="hrasiya212@rku.ac.in" Margin="0,25,0,0"></TextBox>
-            <TextBox Grid.Row="3" Width="320" Header="Password" PlaceholderText="Hemal@123" Margin="0,25,0,0"></TextBox>
-
-            <Button Grid.Row="4" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" Margin="0,25,0,0">Save Profile</Button>
+            <Button x:Name="SaveProfile" Grid.Row="4" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" Margin="0,25,0,0">Save Profile</Button>
             <Button Grid.Row="5"  HorizontalAlignment="Stretch" Margin="0,25,0,0" Foreground="{StaticResource SystemFillColorCritical}">Logout</Button>
 
 

@@ -23,12 +23,25 @@ namespace WinUi_Inventory_Management.Winui_Activities
     /// </summary>
     public sealed partial class MainLayoutPage : Page
     {
+        private User _loggedInUser;
         public MainLayoutPage()
         {
             InitializeComponent();
-            ContentFrame.Navigate(typeof(DashboardPage));
-            RootNavView.SelectedItem = RootNavView.MenuItems[0]; // Highlight Dashboard in sidebar
+            
 
+        }
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+
+            if (e.Parameter is User user)
+            {
+                _loggedInUser = user;
+
+                // Navigate to DashboardPage with user info
+                ContentFrame.Navigate(typeof(DashboardPage), _loggedInUser);
+                RootNavView.SelectedItem = RootNavView.MenuItems[0];
+            }
         }
 
         private void RootNavView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
@@ -43,11 +56,12 @@ namespace WinUi_Inventory_Management.Winui_Activities
                     "DashboardPage" => typeof(DashboardPage),
                     "InvoicePage" => typeof(InvoicePage),
                     "OrdersPage" => typeof(OrdersPage),
-                    _ => typeof(SettingsPage)
+                    "SettingsPage" => typeof(SettingsPage),
+                    _ => typeof(DashboardPage)
                 };
 
                 if (pageType != null)
-                    ContentFrame.Navigate(pageType);
+                    ContentFrame.Navigate(pageType,_loggedInUser);
             }
         }
 

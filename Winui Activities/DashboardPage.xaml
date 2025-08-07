@@ -24,7 +24,11 @@
                     <ColumnDefinition Width="0.50*"/>
                 </Grid.ColumnDefinitions>
                 <TextBlock Text="Dashboard" Grid.Column="0" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Text="Welcome, Hemal" Grid.Column="1"  HorizontalAlignment="Left" VerticalAlignment="Center" Style="{StaticResource SubtitleTextBlockStyle}"/>
+                <TextBlock x:Name="WelcomeText" Grid.Column="1"
+           HorizontalAlignment="Left"
+           VerticalAlignment="Center"
+           Style="{StaticResource SubtitleTextBlockStyle}"
+           Text="Welcome, User"/>
                 <Border Width="60" Height="60" Grid.Column="2" VerticalAlignment="Center"
              BorderBrush="White"
              BorderThickness="1"
@@ -33,9 +37,13 @@
              Margin="0,0,0,10"
              HorizontalAlignment="Center"
              >
-                    <Image Source="/Assets/user_profile.png"
-        Width="60" Height="60"
-/>
+                    <Image x:Name="ProfileImage"
+       Source="/Assets/user_profile.png"
+       Width="60"
+       Height="60"
+       Grid.Column="2"
+       VerticalAlignment="Center"
+       HorizontalAlignment="Center"/>
                 </Border>
 
             </Grid>

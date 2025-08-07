@@ -1,5 +1,9 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
@@ -10,34 +14,37 @@ namespace WinUi_Inventory_Management.Winui_Activities
     /// </summary>
     public sealed partial class LoginPage : Page
     {
+        AppDbContext _dbContext;
         public LoginPage()
         {
             InitializeComponent();
+            _dbContext = new AppDbContext();
         }
 
         public void HyperlinkButton_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(SignupPage));
         }
-     
+
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            string email = EmailInput.Text;
-            string password = PasswordInput.Password; // If PasswordBox used
+            string email = EmailInput.Text.Trim();
+            string password = PasswordInput.Password;
 
             bool hasError = false;
 
-            // Reset all error messages
+            // Reset error messages
             EmailError.Visibility = Visibility.Collapsed;
             PasswordError.Visibility = Visibility.Collapsed;
 
+            // Email validation
             if (string.IsNullOrWhiteSpace(email))
             {
                 EmailError.Text = "Email is required.";
                 EmailError.Visibility = Visibility.Visible;
                 hasError = true;
             }
-            else if (!email.Contains("@"))
+            else if (!Regex.IsMatch(email, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 EmailError.Text = "Please enter a valid email address.";
                 EmailError.Visibility = Visibility.Visible;
@@ -52,14 +59,42 @@ namespace WinUi_Inventory_Management.Winui_Activities
                 hasError = true;
             }
 
-
-            // Perform actual login check here (API call or local validation)
             if (!hasError)
             {
-                Frame.Navigate(typeof(MainLayoutPage));
+                // Fetch user from DB
+                var existingUser = _dbContext.Users.FirstOrDefault(u => u.Email == email);
+
+                if (existingUser == null)
+                {
+                    EmailError.Text = "Email not registered.";
+                    EmailError.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                if (existingUser.Password != password)
+                {
+                    PasswordError.Text = "Incorrect password.";
+                    PasswordError.Visibility = Visibility.Visible;
+                    return;
+                }
+
+                // Success
+                ShowMessage("Login Successful!");
+                Frame.Navigate(typeof(MainLayoutPage),existingUser); // Change to your main page
             }
         }
 
+        private async void ShowMessage(string message)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Login Status",
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+            await dialog.ShowAsync();
+        }
 
     }
 
