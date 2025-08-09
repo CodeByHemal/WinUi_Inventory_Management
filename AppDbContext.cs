@@ -2,18 +2,16 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace WinUi_Inventory_Management
 {
     internal partial class AppDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\.."));
@@ -25,9 +23,38 @@ namespace WinUi_Inventory_Management
 
             string connectionString = connectionTemplate.Replace("{DB_PATH}", dbFilePath);
 
-            // ✅ Auto-start LocalDB if it's not running
-            try { System.Diagnostics.Process.Start("sqllocaldb", "start MSSQLLocalDB"); }
-            catch { /* ignored */ }
+            // ✅ Start LocalDB silently only if not running
+            try
+            {
+                var checkPsi = new ProcessStartInfo
+                {
+                    FileName = "sqllocaldb",
+                    Arguments = "info MSSQLLocalDB",
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true
+                };
+
+                using var checkProcess = Process.Start(checkPsi);
+                string output = checkProcess.StandardOutput.ReadToEnd();
+                checkProcess.WaitForExit();
+
+                if (!output.Contains("Running"))
+                {
+                    var startPsi = new ProcessStartInfo
+                    {
+                        FileName = "sqllocaldb",
+                        Arguments = "start MSSQLLocalDB",
+                        UseShellExecute = false,
+                        CreateNoWindow = true
+                    };
+                    Process.Start(startPsi);
+                }
+            }
+            catch
+            {
+                // Ignore errors if LocalDB is missing or fails to start
+            }
 
             // ✅ Drop orphaned DB if MDF is missing
             if (!File.Exists(dbFilePath))
@@ -42,11 +69,11 @@ namespace WinUi_Inventory_Management
 
                     using var cmd = conn.CreateCommand();
                     cmd.CommandText = @"
-                IF DB_ID('RetailRythmDB') IS NOT NULL
-                BEGIN
-                    ALTER DATABASE RetailRythmDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
-                    DROP DATABASE RetailRythmDB;
-                END";
+                        IF DB_ID('RetailRythmDB') IS NOT NULL
+                        BEGIN
+                            ALTER DATABASE RetailRythmDB SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+                            DROP DATABASE RetailRythmDB;
+                        END";
                     cmd.ExecuteNonQuery();
                 }
                 catch (Exception ex)
@@ -57,9 +84,8 @@ namespace WinUi_Inventory_Management
 
             optionsBuilder.UseSqlServer(connectionString);
         }
-
-
     }
+
     class User
     {
         public int Id { get; set; }
@@ -67,6 +93,5 @@ namespace WinUi_Inventory_Management
         public string Email { get; set; }
         public string Password { get; set; }
         public string ImageName { get; set; }
-
     }
 }

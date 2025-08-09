@@ -1,3 +1,4 @@
+using CommunityToolkit.Mvvm.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -10,8 +11,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using WinUi_Inventory_Management.Models;
+using WinUi_Inventory_Management.ViewModels;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -23,9 +27,16 @@ namespace WinUi_Inventory_Management.Winui_Activities
     /// </summary>
     public sealed partial class OrdersPage : Page
     {
+
+        public OrdersViewModel ViewModel { get; set; } = new OrdersViewModel();
         public OrdersPage()
         {
             InitializeComponent();
+
+            // Initialize the ViewModel
+            this.DataContext = ViewModel;
         }
+
+      
     }
 }

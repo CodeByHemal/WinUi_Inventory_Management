@@ -4,9 +4,13 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:WinUi_Inventory_Management.Winui_Activities"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:vm="using:WinUi_Inventory_Management.ViewModels"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:models="using:WinUi_Inventory_Management.Models"
+
+    mc:Ignorable="d"
+    DataContext="{x:Bind ViewModel, Mode=OneWay}"
+    x:Name="RootPage">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid  Padding="30" Margin="30">
 
@@ -47,96 +51,70 @@
                     </Grid.ColumnDefinitions>
 
 
-                    <StackPanel Grid.Column="0" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="0,20,0,0" Spacing="10">
-                        <!-- Card 1 -->
+                <!-- <StackPanel Grid.Column="0" VerticalAlignment="Top"  HorizontalAlignment="Left" Margin="0,20,0,0" Spacing="10">-->
+                <ListView 
+                Grid.Column="0" 
+                VerticalAlignment="Top" 
+                HorizontalAlignment="Left" 
+                ItemsSource="{x:Bind ViewModel.Products}" 
+                Margin="0,20,0,0" 
+                Background="Transparent" 
+                BorderThickness="0"
+                Height="400" 
+                  
+                ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.VerticalScrollMode="Enabled"
+                Width="600"
+            
+                    >
+
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <ContentPresenter/>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListView.ItemContainerStyle>
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate x:DataType="models:Product">
                             <Border Background="#333333"
-                                CornerRadius="8"
-                                Padding="16"
-                                Width="650">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <!-- Item Name -->
-                                    <ColumnDefinition Width="Auto" />
-                                    <!-- Price -->
-                                    <ColumnDefinition Width="Auto" />
-                                    <!-- Quantity Stepper -->
-                                    <ColumnDefinition Width="Auto" />
-                                    <!-- Delete Button -->
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="Momos" Foreground="White" VerticalAlignment="Center" FontSize="16" />
-                                <TextBlock Grid.Column="1" Text="200" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
-
-                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
-                                    <TextBlock Text="2" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
-                                    <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
-                                </StackPanel>
-
-                                <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
-                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
-                                </Button>
-                            </Grid>
-                        </Border>
-
-                        <!-- Card 2 -->
-                    <Border Background="#333333"
                     CornerRadius="8"
                     Padding="16"
-                    Width="650">
-                        <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
+                    Width="600"
+                    HorizontalAlignment="Stretch" 
+                                Margin="0,0,0,20">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
 
-                                <TextBlock Grid.Column="0" Text="Momos" Foreground="White" VerticalAlignment="Center" FontSize="16" />
-                                <TextBlock Grid.Column="1" Text="200" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind Name}" Foreground="White" VerticalAlignment="Center" FontSize="16" />
+                                    <TextBlock Grid.Column="1" Text="{x:Bind Price}" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
 
-                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
-                                    <TextBlock Text="2" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
-                                    <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
-                                </StackPanel>
+                                    <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
 
-                                <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
-                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
-                                </Button>
-                            </Grid>
-                        </Border>
+                                         <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                                        <TextBlock Text="{x:Bind Quantity}" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
+                                        <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                                    </StackPanel>
 
-                        <!--Card 3-->
-                        <Border Background="#333333"
-                            CornerRadius="8"
-                            Padding="16"
-                            Width="650">
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-
-                                <TextBlock Grid.Column="0" Text="Momos" Foreground="White" VerticalAlignment="Center" FontSize="16" />
-                                <TextBlock Grid.Column="1" Text="200" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
-
-                                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
-                                    <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
-                                    <TextBlock Text="2" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
-                                    <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
-                                </StackPanel>
-
-                                <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
-                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
-                                </Button>
-                            </Grid>
-                        </Border>
-
-                    </StackPanel>
+                                    <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
+                                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
+                                    </Button>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <!--</StackPanel>-->
 
 
                     <Grid Grid.Column="1">
@@ -148,14 +126,77 @@
                             <StackPanel Grid.Column="1" Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Center" >
 
 
-                                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Product Name" PlaceholderText="Meggie" Width="200" Margin="0,10,0,0" Height="60"></TextBox>
-                                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Price" PlaceholderText="20" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
-                                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Quantity" PlaceholderText="3" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
-                                <TextBox FontSize="{StaticResource BodyTextBlockFontSize}" Header="Discount" PlaceholderText="20" Margin="0,10,0,0" Width="200" Height="60"></TextBox>
+                            <TextBox
+                                FontSize="{StaticResource BodyTextBlockFontSize}"
+                                Header="Product Name"
+                                PlaceholderText="Meggie"
+                                Width="200"
+                                Margin="0,10,0,0"
+                                Height="60"
+                                Text="{x:Bind ViewModel.Name, Mode=TwoWay}" />
+                            <TextBlock
+                                Text="{x:Bind ViewModel.NameError, Mode=OneWay}"
+                                Foreground="Red"
+                                FontSize="12"
+                                Margin="5,0,0,0"
+                                Visibility="{x:Bind ViewModel.IsNameErrorVisible, Mode=OneWay}" />
 
-                                <Button  Style="{StaticResource AccentButtonStyle}" Margin="0,10,0,0" HorizontalAlignment="Stretch">Add</Button>
+                            <!-- Price -->
+                            <TextBox
+                                FontSize="{StaticResource BodyTextBlockFontSize}"
+                                Header="Price"
+                                PlaceholderText="20"
+                                Margin="0,10,0,0"
+                                Width="200"
+                                Height="60"
+                                Text="{x:Bind ViewModel.Price, Mode=TwoWay}" />
+                            <TextBlock
+                                Text="{x:Bind ViewModel.PriceError, Mode=OneWay}"
+                                Foreground="Red"
+                                FontSize="12"
+                                Margin="5,0,0,0"
+                                Visibility="{x:Bind ViewModel.IsPriceErrorVisible, Mode=OneWay}" />
 
-                            </StackPanel>
+                            <!-- Quantity -->
+                            <TextBox
+                                FontSize="{StaticResource BodyTextBlockFontSize}"
+                                Header="Quantity"
+                                PlaceholderText="3"
+                                Margin="0,10,0,0"
+                                Width="200"
+                                Height="60"
+                                Text="{x:Bind ViewModel.Quantity, Mode=TwoWay}" />
+                            <TextBlock
+                                Text="{x:Bind ViewModel.QuantityError, Mode=OneWay}"
+                                Foreground="Red"
+                                FontSize="12"
+                                Margin="5,0,0,0"
+                                Visibility="{x:Bind ViewModel.IsQuantityErrorVisible, Mode=OneWay}" />
+
+                            <!-- Discount -->
+                            <TextBox
+                                FontSize="{StaticResource BodyTextBlockFontSize}"
+                                Header="Discount"
+                                PlaceholderText="20"
+                                Margin="0,10,0,0"
+                                Width="200"
+                                Height="60"
+                                Text="{x:Bind ViewModel.Discount, Mode=TwoWay}" />
+                            <TextBlock
+                                Text="{x:Bind ViewModel.DiscountError, Mode=OneWay}"
+                                Foreground="Red"
+                                FontSize="12"
+                                Margin="5,0,0,0"
+                                Visibility="{x:Bind ViewModel.IsDiscountErrorVisible, Mode=OneWay}" />
+
+                            <Button
+                                Style="{StaticResource AccentButtonStyle}"
+                                Margin="0,10,0,0"
+                                HorizontalAlignment="Stretch"
+                                Command="{x:Bind ViewModel.AddProductCommand}" >
+                                Add
+                            </Button>
+                        </StackPanel>
                         </Border>
                     </Grid>
 
