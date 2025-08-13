@@ -96,17 +96,17 @@
                                         <ColumnDefinition Width="Auto" />
                                     </Grid.ColumnDefinitions>
 
-                                    <TextBlock Grid.Column="0" Text="{x:Bind Name}" Foreground="White" VerticalAlignment="Center" FontSize="16" />
-                                    <TextBlock Grid.Column="1" Text="{x:Bind Price}" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
+                                    <TextBlock Grid.Column="0" Text="{x:Bind Name, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White" VerticalAlignment="Center" FontSize="16" />
+                                    <TextBlock Grid.Column="1" Text="{x:Bind TotalPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White" VerticalAlignment="Center" FontSize="16" Margin="20,0" />
 
                                     <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center">
 
-                                         <Button Content="+" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
-                                        <TextBlock Text="{x:Bind Quantity}" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
-                                        <Button Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                                         <Button Content="+" Click="Increment_Quantity_Btn" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
+                                        <TextBlock Text="{x:Bind Quantity, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Foreground="White" FontSize="16" VerticalAlignment="Center" Margin="15,0" />
+                                        <Button Click="Decrement_Quantity_Btn" Content="-" Foreground="White" Background="#4F4F4F" BorderThickness="0" CornerRadius="15" Width="30" Height="30" Padding="0" />
                                     </StackPanel>
 
-                                    <Button Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
+                                    <Button Click="Delete_Product_Btn" Grid.Column="3" Background="Transparent" BorderThickness="0" Margin="20,0,0,0" VerticalAlignment="Center">
                                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" Foreground="#E53935" FontSize="16" />
                                     </Button>
                                 </Grid>
@@ -222,7 +222,7 @@
                      VerticalAlignment="Stretch">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="{StaticResource SubtitleTextBlockFontSize}">Total Product</TextBlock>
-                            <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" Margin="0,10,0,0" FontSize="{StaticResource SubtitleTextBlockFontSize}">5</TextBlock>
+                            <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" Margin="0,10,0,0" FontSize="{StaticResource SubtitleTextBlockFontSize}" Text="{x:Bind ViewModel.Products.Count, Mode=OneWay}"/>
                         </StackPanel>
                        
                     </Border>
@@ -242,7 +242,7 @@
                      VerticalAlignment="Stretch">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="{StaticResource SubtitleTextBlockFontSize}">Total Price</TextBlock>
-                            <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" Margin="0,10,0,0" FontSize="{StaticResource SubtitleTextBlockFontSize}">5000</TextBlock>
+                            <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" Margin="0,10,0,0" FontSize="{StaticResource SubtitleTextBlockFontSize}" Text="{x:Bind ViewModel.AllProductTotalPrice, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                     </Border>
@@ -261,7 +261,7 @@
                      VerticalAlignment="Stretch">
                         <StackPanel VerticalAlignment="Center">
                             <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" FontSize="{StaticResource SubtitleTextBlockFontSize}">Discount</TextBlock>
-                            <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" Margin="0,10,0,0" FontSize="{StaticResource SubtitleTextBlockFontSize}">200</TextBlock>
+                            <TextBlock HorizontalAlignment="Center" FontWeight="SemiBold" Margin="0,10,0,0" FontSize="{StaticResource SubtitleTextBlockFontSize}" Text="{x:Bind ViewModel.TotalDiscountAmount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                         </StackPanel>
 
                     </Border>

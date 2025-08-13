@@ -55,7 +55,7 @@
                 </Grid.ColumnDefinitions>
 
             <TextBlock Grid.Column="0" Margin="0,10,0,0" FontSize="{StaticResource BodyTextBlockFontSize}">New to RetailRythm ?</TextBlock>
-                <HyperlinkButton Grid.Column="1" Margin="0,10,0,0" Foreground="#60CDFF" Background="Transparent" FontSize="{StaticResource BodyTextBlockFontSize}" Padding="3,0,0,0" Click="HyperlinkButton_Click">Create the account</HyperlinkButton>
+                <HyperlinkButton Grid.Column="1" Margin="0,10,0,0" Foreground="{StaticResource SystemAccentColor}" Background="Transparent" FontSize="{StaticResource BodyTextBlockFontSize}" Padding="3,0,0,0" Click="HyperlinkButton_Click">Create the account</HyperlinkButton>
             </Grid>
 
         </StackPanel>

@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.Input;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +11,23 @@ using WinUi_Inventory_Management.ViewModels;
 
 namespace WinUi_Inventory_Management.Models
 {
-    public class Product
+    public partial class Product : ObservableObject
     {
-        public string Name { get; set; }
-        public double Price { get; set; }
-        public int Quantity { get; set; }
-        public double Discount { get; set; }
+
+        [ObservableProperty]
+        private string name;
+
+        [ObservableProperty]
+        private double price;
+
+        [ObservableProperty]
+        private int quantity;
+
+        [ObservableProperty]
+        private double discount;
+
+        [ObservableProperty]
+        private double totalPrice;
     }
 
 }

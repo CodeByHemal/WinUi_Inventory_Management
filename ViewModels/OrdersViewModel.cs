@@ -1,6 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using WinUi_Inventory_Management.Models;
 
 namespace WinUi_Inventory_Management.ViewModels
@@ -36,6 +39,13 @@ namespace WinUi_Inventory_Management.ViewModels
         // Observable collection of products
         [ObservableProperty]
         private ObservableCollection<Product> products = new();
+
+        [ObservableProperty]
+        private double totalDiscountAmount = 0;
+
+        [ObservableProperty]
+        private double allProductTotalPrice = 0;
+
 
         public OrdersViewModel()
         {
@@ -130,8 +140,9 @@ namespace WinUi_Inventory_Management.ViewModels
             {
                 Name = Name,
                 Quantity = Quantity,
-                Price = Price * Quantity,
-                Discount = Discount
+                Price = Price,
+                Discount = Discount, 
+                TotalPrice = (Price * Quantity) - Discount
             };
             Products.Add(product);
 
@@ -140,23 +151,57 @@ namespace WinUi_Inventory_Management.ViewModels
             Price = 0;
             Quantity = 0;
             Discount = 0;
+            TotalDiscountAmount = GetTotalDiscountAmount();
+            AllProductTotalPrice = GetAllProductTotalPrice();
         }
 
         [RelayCommand]
         private void IncrementQuantity(Product product)
         {
-            product.Quantity += 1;
-            Quantity = product.Quantity;
+            var index = Products.IndexOf(product);
+            Products[index].Quantity += 1;
+            Products[index].TotalPrice = (Products[index].Price * Products[index].Quantity) - Products[index].Discount;
+            AllProductTotalPrice = GetAllProductTotalPrice();
+
         }
 
         [RelayCommand]
         private void DecrementQuantity(Product product)
         {
-            if (product.Quantity > 1)
+            var index = Products.IndexOf(product);
+            if (Products[index].Quantity > 1)
             {
-                product.Quantity -= 1;
+                Products[index].Quantity -= 1;
+                Products[index].TotalPrice = (Products[index].Price * Products[index].Quantity) - Products[index].Discount;
+                if (Products[index].Discount > Products[index].TotalPrice)
+                {
+                    Products[index].Discount = 0;
+                }
+
+                AllProductTotalPrice = GetAllProductTotalPrice();
             }
         }
+
+        [RelayCommand]
+        private void RemoveProduct(Product product)
+        {
+            Products.Remove(product);
+            AllProductTotalPrice = GetAllProductTotalPrice();
+            TotalDiscountAmount = GetTotalDiscountAmount();
+        }
+
+        public double GetTotalDiscountAmount()
+        {
+            TotalDiscountAmount = Products.Sum(p => p.Discount);
+            return TotalDiscountAmount;
+        }
+
+        public double GetAllProductTotalPrice()
+        {
+            AllProductTotalPrice = Products.Sum(p => p.TotalPrice);
+            return AllProductTotalPrice;
+        }
+
         private bool CanAddProduct()
         {
             ValidateName();
