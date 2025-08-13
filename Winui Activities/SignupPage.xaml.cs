@@ -3,6 +3,7 @@ using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using WinUi_Inventory_Management.Models;
 
 
 // To learn more about WinUI, the WinUI project structure,

@@ -109,28 +109,97 @@ namespace WinUi_Inventory_Management.ViewModels
         // Validation methods
         private void ValidateName()
         {
-            NameError = string.IsNullOrWhiteSpace(Name) ? "Name cannot be empty." : string.Empty;
+            if (string.IsNullOrWhiteSpace(Name))
+            {
+                NameError = "Name cannot be empty.";
+            }
+            else if (Name.Length > 50)
+            {
+                NameError = "Name cannot exceed 50 characters.";
+            }
+            else
+            {
+                var regex = NameValidationRegex();
+                if (!regex.IsMatch(Name))
+                {
+                    NameError = "Name contains invalid characters.";
+                }
+                else
+                {
+                    NameError = string.Empty;
+                }
+            }
         }
+
 
         private void ValidatePrice()
         {
-            PriceError = Price <= 0 ? "Price must be greater than 0." : string.Empty;
+            var regex = PriceFormatRegex();
+
+            if (!regex.IsMatch(Price.ToString()))
+            {
+                PriceError = "Invalid price format.";
+            }
+            else if (Price <= 0)
+            {
+                PriceError = "Price must be greater than 0.";
+            }
+            else if (Price > 1000000)
+            {
+                PriceError = "Price is too high.";
+            }
+            else
+            {
+                PriceError = string.Empty;
+            }
         }
+
 
         private void ValidateQuantity()
         {
-            QuantityError = Quantity <= 0 ? "Quantity must be greater than 0." : string.Empty;
+            var regex = QuantityFormatRegex();
+
+            if (!regex.IsMatch(Quantity.ToString()))
+            {
+                QuantityError = "Invalid quantity format.";
+            }
+            else if (Quantity <= 0)
+            {
+                QuantityError = "Quantity must be greater than 0.";
+            }
+            else if (Quantity > 1000)
+            {
+                QuantityError = "Quantity is too high.";
+            }
+            else
+            {
+                QuantityError = string.Empty;
+            }
         }
+
 
         private void ValidateDiscount()
         {
-            if (Discount < 0)
+            var regex = DiscountFormatRegex();
+
+            if (!regex.IsMatch(Discount.ToString()))
+            {
+                DiscountError = "Invalid discount format.";
+            }
+            else if (Discount < 0)
+            {
                 DiscountError = "Discount cannot be negative.";
+            }
             else if (Discount > Price)
+            {
                 DiscountError = "Discount cannot exceed price.";
+            }
             else
+            {
                 DiscountError = string.Empty;
+            }
         }
+
 
         // AddProduct command with validation
         [RelayCommand(CanExecute = nameof(CanAddProduct))]
@@ -202,6 +271,14 @@ namespace WinUi_Inventory_Management.ViewModels
             return AllProductTotalPrice;
         }
 
+        [RelayCommand]
+        public void Clear()
+        {
+            Products.Clear();
+            AllProductTotalPrice = 0;
+            TotalDiscountAmount = 0;
+        }
+
         private bool CanAddProduct()
         {
             ValidateName();
@@ -209,11 +286,26 @@ namespace WinUi_Inventory_Management.ViewModels
             ValidateQuantity();
             ValidateDiscount();
 
+            // Check if product with the same name already exists
+            if (Products.Any(p => p.Name.Equals(Name, StringComparison.OrdinalIgnoreCase)))
+            {
+                NameError = "Product already exists.";
+                return false;
+            }
+
             return string.IsNullOrEmpty(NameError)
                 && string.IsNullOrEmpty(PriceError)
                 && string.IsNullOrEmpty(QuantityError)
                 && string.IsNullOrEmpty(DiscountError);
         }
 
+        [System.Text.RegularExpressions.GeneratedRegex(@"^[a-zA-Z0-9\s\-]+$")]
+        private static partial System.Text.RegularExpressions.Regex NameValidationRegex();
+        [System.Text.RegularExpressions.GeneratedRegex(@"^\d+(\.\d{0,2})?$")]
+        private static partial System.Text.RegularExpressions.Regex PriceFormatRegex();
+        [System.Text.RegularExpressions.GeneratedRegex(@"^\d+(\.\d{0,2})?$")]
+        private static partial System.Text.RegularExpressions.Regex DiscountFormatRegex();
+        [System.Text.RegularExpressions.GeneratedRegex(@"^\d+$")]
+        private static partial System.Text.RegularExpressions.Regex QuantityFormatRegex();
     }
 }

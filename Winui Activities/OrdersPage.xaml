@@ -38,8 +38,8 @@
                              CornerRadius="60"
                              Margin="0,0,0,10"
                              HorizontalAlignment="Center" >
-                    <Image Source="/Assets/user_profile.png"
-                          Width="60" Height="60"/>
+                    <Image
+                          Width="60" Height="60" x:Name="ProfileImage"/>
                 </Border>
 
             </Grid>
@@ -280,7 +280,8 @@
                      VerticalAlignment="Stretch">
                         <StackPanel>
                             <TextBlock>Order Name</TextBlock>
-                            <TextBox PlaceholderText="Maggie" Margin="0,20,0,0"></TextBox>
+                            <TextBox PlaceholderText="Maggie" Margin="0,20,0,0" x:Name="OrderInput"></TextBox>
+                            <TextBlock x:Name="OrderError" Foreground="Red" Visibility="Collapsed"></TextBlock>
                             <Grid Margin="0,20,0,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -288,8 +289,8 @@
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
 
-                                <Button Style="{StaticResource AccentButtonStyle}" Content="Save" HorizontalAlignment="Stretch"/>
-                                <Button Style="{StaticResource AccentButtonStyle}" Content="Clear" Grid.Column="2" HorizontalAlignment="Stretch"/>
+                                <Button Style="{StaticResource AccentButtonStyle}" Click="Save_Order" Content="Save" HorizontalAlignment="Stretch"/>
+                                <Button Style="{StaticResource AccentButtonStyle}" Content="Clear" Grid.Column="2" HorizontalAlignment="Stretch" Command="{x:Bind ViewModel.ClearCommand}"/>
                             </Grid>
                         </StackPanel>
 

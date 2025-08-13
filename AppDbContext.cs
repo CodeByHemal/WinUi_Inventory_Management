@@ -5,13 +5,26 @@ using System;
 using System.Configuration;
 using System.Diagnostics;
 using System.IO;
+using WinUi_Inventory_Management.Models;
 
 namespace WinUi_Inventory_Management
 {
     internal partial class AppDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Order>()
+                .HasMany(o => o.Items)
+                .WithOne(i => i.Order)
+                .HasForeignKey(i => i.OrderId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             string projectRoot = Path.GetFullPath(Path.Combine(AppContext.BaseDirectory, @"..\..\..\..\.."));
@@ -84,14 +97,5 @@ namespace WinUi_Inventory_Management
 
             optionsBuilder.UseSqlServer(connectionString);
         }
-    }
-
-    class User
-    {
-        public int Id { get; set; }
-        public string FullName { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public string ImageName { get; set; }
     }
 }

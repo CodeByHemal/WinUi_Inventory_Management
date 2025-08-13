@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.Windows.Storage;
 using System;
 using System.Linq;
+using Windows.Storage;
 using System.Text.RegularExpressions;
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -80,6 +82,10 @@ namespace WinUi_Inventory_Management.Winui_Activities
 
                 // Success
                 ShowMessage("Login Successful!");
+                //store user info in local settings
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["UserEmail"] = existingUser.Email;
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["UserFullName"] = existingUser.FullName;
+                Windows.Storage.ApplicationData.Current.LocalSettings.Values["UserId"] = existingUser.Id;
                 Frame.Navigate(typeof(MainLayoutPage),existingUser); // Change to your main page
             }
         }
