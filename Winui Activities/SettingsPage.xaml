@@ -31,15 +31,35 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-
-                    <Image Source="/Assets/user_profile.png" Height="100" Width="100" />
-              
-                <TextBox Grid.Row="1" Width="320" Header="Fullname" PlaceholderText="Hemal Rashiya" Margin="0,25,0,0"></TextBox>
-            <TextBox  Grid.Row="2" Width="320" Header="Email" PlaceholderText="hrasiya212@rku.ac.in" Margin="0,25,0,0"></TextBox>
-            <TextBox  Grid.Row="3" Width="320" Header="Password" PlaceholderText="Hemal@123" Margin="0,25,0,0"></TextBox>
-
-            <Button Grid.Row="4" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" Margin="0,25,0,0">Save Profile</Button>
-            <Button Grid.Row="5"  HorizontalAlignment="Stretch" Margin="0,25,0,0" Foreground="{StaticResource SystemFillColorCritical}">Logout</Button>
+                <Button Click="PickAndSaveImage">
+                    <Image x:Name="ProfileImage" Source="/Assets/ProfileImage/profile_picture.png" Width="30" Height="30"/>
+                </Button>
+                
+                <TextBox x:Name="Fullname" Grid.Row="1" Width="320" Header="Fullname" PlaceholderText="Hemal Rashiya" Margin="0,25,0,0"></TextBox>
+                <TextBlock x:Name="NameError"
+                    Foreground="Red"
+                    FontSize="12"
+                    Margin="0,5,0,0"
+                    Visibility="Collapsed"
+                    Text="Please enter a valid email." />
+            
+            <TextBox IsEnabled="False" x:Name="Email"  Grid.Row="2" Width="320" Header="Email" PlaceholderText="hrasiya212@rku.ac.in" Margin="0,25,0,0"></TextBox>
+              <!--  <TextBlock x:Name="EmailError"
+                     Foreground="Red"
+                     FontSize="12"
+                     Margin="0,5,0,0"
+                     Visibility="Collapsed"
+                     Text="Please enter a valid email." /> -->
+                <TextBox x:Name="Password"  Grid.Row="3" Width="320" Header="Password" PlaceholderText="Hemal@123" Margin="0,25,0,0"></TextBox>
+                <TextBlock x:Name="PasswordError"
+                      Foreground="Red"
+                      FontSize="12"
+                      Margin="0,5,0,0"
+                      Visibility="Collapsed"
+                      Text="Please enter a valid email." />
+            
+                <Button Click="SaveProfile" Grid.Row="4" Style="{StaticResource AccentButtonStyle}" HorizontalAlignment="Stretch" Margin="0,25,0,0">Save Profile</Button>
+            <Button Click="Logout" Grid.Row="5"  HorizontalAlignment="Stretch" Margin="0,25,0,0" Foreground="{StaticResource SystemFillColorCritical}">Logout</Button>
 
 
         </Grid>
