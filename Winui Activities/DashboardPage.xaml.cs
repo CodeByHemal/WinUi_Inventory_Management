@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Controls.Primitives;
@@ -28,10 +29,26 @@ namespace WinUi_Inventory_Management.Winui_Activities
     public sealed partial class DashboardPage : Page
     {
         private User _loggedInUser;
+        public List<Order> Orders;
+
         public DashboardPage()
         {
             InitializeComponent();
+
+            Orders = GetOrders();
         }
+
+        private List<Order> GetOrders()
+        {
+            var localSetting = ApplicationData.Current.LocalSettings;
+            var userId = int.Parse(localSetting.Values["UserId"].ToString());
+            using var context = new AppDbContext();
+            return context.Orders
+                .Include(o => o.Items)
+                .Where(o => o.UserId == userId)
+                .ToList();
+        }
+
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
