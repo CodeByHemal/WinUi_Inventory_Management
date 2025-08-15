@@ -30,24 +30,20 @@ namespace WinUi_Inventory_Management.Winui_Activities
     {
         private User _loggedInUser;
         public List<Order> Orders;
+        private List<Order> _allOrders;
+        AppDbContext _dbContext;
+        private int? _selectedMonth = null;
 
         public DashboardPage()
         {
             InitializeComponent();
+            _dbContext = new AppDbContext();
+            _allOrders = new List<Order>();
+            Orders = new List<Order>();
 
-            Orders = GetOrders();
         }
 
-        private List<Order> GetOrders()
-        {
-            var localSetting = ApplicationData.Current.LocalSettings;
-            var userId = int.Parse(localSetting.Values["UserId"].ToString());
-            using var context = new AppDbContext();
-            return context.Orders
-                .Include(o => o.Items)
-                .Where(o => o.UserId == userId)
-                .ToList();
-        }
+       
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -80,7 +76,111 @@ namespace WinUi_Inventory_Management.Winui_Activities
                 {
                     ProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ProfileImage/profile_picture.png"));
                 }
+
+                var existingOrder = _dbContext.Orders.FirstOrDefault(u => u.UserId == _loggedInUser.Id);
+                var totalProduct = _dbContext.OrderItems.Count(Orders => Orders.OrderId == existingOrder.Id);
+                var userTotalPrice = _dbContext.Orders
+                    .Where(o => o.UserId == _loggedInUser.Id)
+                    .Sum(o => o.TotalPrice);
+                var userTotalDiscount = _dbContext.Orders
+                    .Where(o => o.UserId == _loggedInUser.Id)
+                    .Sum(o => o.TotalDiscount);
+
+                if (totalProduct > 0)
+                {
+                    P0.Text = $"{totalProduct}";
+                }
+                else
+                {
+                    P0.Text = "No products found.";
+                }
+                P1.Text = $"{userTotalPrice}";
+                P2.Text = $"{userTotalDiscount}";
+
+                _allOrders = GetOrders();
+                ApplyMonthFilter();
+                
             }
         }
+
+        private void ApplyFilters()
+        {
+            string searchText = MyAutoSuggestBox.Text?.Trim().ToLower();
+            IEnumerable<Order> filtered = _allOrders;
+
+            // Apply month filter first
+            if (_selectedMonth.HasValue)
+            {
+                filtered = filtered.Where(o => o.CreatedAt.Month == _selectedMonth.Value);
+            }
+
+            // Apply search filter
+            if (!string.IsNullOrEmpty(searchText))
+            {
+                filtered = filtered.Where(o =>
+                    o.OrderName.ToLower().Contains(searchText) ||
+                    o.TotalPrice.ToString().Contains(searchText)
+                );
+            }
+
+            // Update Orders and ListView
+            Orders = filtered.ToList();
+            MyOrdersListView.ItemsSource = Orders; // ensure ListView refreshes
+
+            // Update totals (P0, P1, P2) based on filtered data
+            var totalProduct = Orders.Sum(o => o.Items.Count);
+            var userTotalPrice = Orders.Sum(o => o.TotalPrice);
+            var userTotalDiscount = Orders.Sum(o => o.TotalDiscount);
+
+            P0.Text = $"{totalProduct}";
+            P1.Text = $"{userTotalPrice}";
+            P2.Text = $"{userTotalDiscount}";
+        }
+
+
+        private List<Order> GetOrders()
+        {
+            var localSetting = ApplicationData.Current.LocalSettings;
+            var userId = int.Parse(localSetting.Values["UserId"].ToString());
+            using var context = new AppDbContext();
+            return context.Orders
+                .Include(o => o.Items)
+                .Where(o => o.UserId == userId)
+                .ToList();
+        }
+
+        private void ApplyMonthFilter()
+        {
+            IEnumerable<Order> filtered = _allOrders;
+
+            if (_selectedMonth.HasValue)
+            {
+                filtered = filtered.Where(o => o.CreatedAt.Month == _selectedMonth.Value);
+            }
+
+            Orders = filtered.ToList();
+            MyOrdersListView.ItemsSource = Orders; // refresh x:Bind
+        }
+
+        private void MonthSelected(object sender, RoutedEventArgs e)
+        {
+            if (sender is MenuFlyoutItem item && int.TryParse(item.Tag.ToString(), out int month))
+            {
+                _selectedMonth = month == 0 ? (int?)null : month;
+                MonthDropDown.Content = item.Text;
+                ApplyFilters();
+            }
+        }
+        private void MyAutoSuggestBox_TextChanged(AutoSuggestBox sender, AutoSuggestBoxTextChangedEventArgs args)
+        {
+            if (args.Reason == AutoSuggestionBoxTextChangeReason.UserInput)
+            {
+                ApplyFilters();
+            }
+        }
+
+
+
+
     }
 }

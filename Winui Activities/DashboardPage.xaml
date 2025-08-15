@@ -56,29 +56,39 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0" Orientation="Vertical" VerticalAlignment="Bottom" HorizontalAlignment="Center">
-                    <AutoSuggestBox x:Name="MyAutoSuggestBox" QueryIcon="Find" VerticalAlignment="Center" PlaceholderText="Search..." Width="1200"/>
+                    <AutoSuggestBox 
+                        x:Name="MyAutoSuggestBox" 
+                        QueryIcon="Find" 
+                        VerticalAlignment="Center" 
+                        PlaceholderText="Search..." 
+                        Width="1200"
+                        TextChanged="MyAutoSuggestBox_TextChanged"/>
                     <TextBlock x:Name="SearchResultsTextBlock" FontSize="16"/>
                 </StackPanel>
 
 
-                <DropDownButton Grid.Column="2" Content="Email" VerticalAlignment="Top" HorizontalAlignment="Center" >
+                <DropDownButton x:Name="MonthDropDown" Grid.Column="2" Content="Select Month" VerticalAlignment="Top" HorizontalAlignment="Center">
                     <DropDownButton.Flyout>
                         <MenuFlyout Placement="Bottom">
-                            <MenuFlyoutItem Text="January"/>
-                            <MenuFlyoutItem Text="Febuary"/>
-                            <MenuFlyoutItem Text="March"/>
-                            <MenuFlyoutItem Text="April"/>
-                            <MenuFlyoutItem Text="May"/>
-                            <MenuFlyoutItem Text="June"/>
-                            <MenuFlyoutItem Text="July"/>
-                            <MenuFlyoutItem Text="August"/>
-                            <MenuFlyoutItem Text="September"/>
-                            <MenuFlyoutItem Text="October"/>
-                            <MenuFlyoutItem Text="November"/>
-                            <MenuFlyoutItem Text="December"/>
+                            <MenuFlyoutItem Text="All Months" Click="MonthSelected" Tag="0"/>
+                            <MenuFlyoutItem Text="January" Click="MonthSelected" Tag="1"/>
+                            <MenuFlyoutItem Text="February" Click="MonthSelected" Tag="2"/>
+                            <MenuFlyoutItem Text="March" Click="MonthSelected" Tag="3"/>
+                            <MenuFlyoutItem Text="April" Click="MonthSelected" Tag="4"/>
+                            <MenuFlyoutItem Text="May" Click="MonthSelected" Tag="5"/>
+                            <MenuFlyoutItem Text="June" Click="MonthSelected" Tag="6"/>
+                            <MenuFlyoutItem Text="July" Click="MonthSelected" Tag="7"/>
+                            <MenuFlyoutItem Text="August" Click="MonthSelected" Tag="8"/>
+                            <MenuFlyoutItem Text="September" Click="MonthSelected" Tag="9"/>
+                            <MenuFlyoutItem Text="October" Click="MonthSelected" Tag="10"/>
+                            <MenuFlyoutItem Text="November" Click="MonthSelected" Tag="11"/>
+                            <MenuFlyoutItem Text="December" Click="MonthSelected" Tag="12"/>
                         </MenuFlyout>
                     </DropDownButton.Flyout>
                 </DropDownButton>
+
+
+
             </Grid>
 
             <Grid Grid.Row="2"  VerticalAlignment="Center" Margin="0,30,0,0">
@@ -104,11 +114,11 @@
                             Spacing="10">
 
                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
-                            <TextBlock
-                            Text="Product" Style="{StaticResource SubtitleTextBlockStyle}">
+                            <TextBlock 
+                            Text="Total Order" Style="{StaticResource SubtitleTextBlockStyle}">
 
                             </TextBlock>
-                            <TextBlock
+                            <TextBlock x:Name="P0"
                             Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
                             </TextBlock>
@@ -133,10 +143,10 @@
 
                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
                             <TextBlock
-                Text="Product" Style="{StaticResource SubtitleTextBlockStyle}">
+                Text="Total Price" Style="{StaticResource SubtitleTextBlockStyle}">
 
                             </TextBlock>
-                            <TextBlock
+                            <TextBlock x:Name="P1"
                 Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
                             </TextBlock>
@@ -145,7 +155,7 @@
                     </Border>
                 </Grid>
 
-                <Grid Grid.Column="2    "
+                <Grid Grid.Column="2"
         HorizontalAlignment="Left"
         VerticalAlignment="Center">
                     <Border
@@ -162,10 +172,10 @@
 
                             <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xF71E;" FontSize="50"/>
                             <TextBlock
-                Text="Product" Style="{StaticResource SubtitleTextBlockStyle}">
+                Text="Total Discount" Style="{StaticResource SubtitleTextBlockStyle}">
 
                             </TextBlock>
-                            <TextBlock
+                            <TextBlock x:Name="P2"
                 Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
                             </TextBlock>
@@ -212,7 +222,7 @@
                     <TextBlock Text="Order Date" Grid.Column="5" FontWeight="Bold" />
                 </Grid>
 
-                <ListView Grid.Row="1" ItemsSource="{x:Bind Orders}" Margin="0,5,0,0">
+                <ListView  x:Name="MyOrdersListView" Grid.Row="1" ItemsSource="{x:Bind Orders}" Margin="0,5,0,0">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="Template">
@@ -224,7 +234,7 @@
                             </Setter>
                         </Style>
                     </ListView.ItemContainerStyle>
-                    
+
                     <ListView.ItemTemplate>
                         <DataTemplate x:DataType="models:Order">
                             <Grid Padding="10" BorderBrush="{ThemeResource CardStrokeColorDefaultBrush}" BorderThickness="0,0,0,1">
@@ -247,42 +257,6 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                
-                
-              <!--  <ListView Grid.Row="1" ItemsSource="{x:Bind Orders}" Margin="0,20,0,0">
-                    
-                    <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="models:Order">
-                           <Border
-                            Width="800"
-                            Padding="20"
-                            Margin="10"
-                            CornerRadius="12"
-                            Background="{ThemeResource CardBackgroundFillColorDefaultBrush}">
-
-                                <Grid VerticalAlignment="Center">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="*" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-
-                                    <TextBlock Grid.Column="1" VerticalAlignment="Center" Margin="20,0,0,0" >
-                        <Run>Invoice_</Run>
-                        <Run Text="{x:Bind OrderName}"/>
-                        <Run>_</Run>
-                        <Run Text="{x:Bind CreatedAt}"/>
-                        <Run>.pdf</Run>
-                                    </TextBlock>
-                                    <Button Grid.Column="2" Background="Transparent" BorderThickness="0" VerticalAlignment="Center" Click="DownloadInvoice">
-                                        <FontIcon Glyph="&#xE896;" FontSize="18"/>
-                                    </Button>
-                                </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                    
-                </ListView>-->
 
 
             </Grid>
