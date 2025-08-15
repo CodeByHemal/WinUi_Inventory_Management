@@ -1,3 +1,4 @@
+using Microsoft.UI.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Media.Imaging;
@@ -163,7 +164,8 @@ namespace WinUi_Inventory_Management.Winui_Activities
                     Windows.Storage.ApplicationData.Current.LocalSettings.Values["UserEmail"] = userToUpdate.Email;
                     Windows.Storage.ApplicationData.Current.LocalSettings.Values["UserFullName"] =userToUpdate.FullName;
                     Windows.Storage.ApplicationData.Current.LocalSettings.Values["UserId"] = userToUpdate.Id;
-                    Frame.Navigate(typeof(DashboardPage), userToUpdate);
+                    var layout = (App.MainWindow.Content as Frame);
+                    layout!.Navigate(typeof(MainLayoutPage), userToUpdate);
                 }
                 else
                 {
@@ -177,7 +179,7 @@ namespace WinUi_Inventory_Management.Winui_Activities
         {
             var dialog = new ContentDialog
             {
-                Title = "Registration",
+                Title = "Profile",
                 Content = message,
                 CloseButtonText = "OK",
                 XamlRoot = this.XamlRoot
@@ -186,9 +188,26 @@ namespace WinUi_Inventory_Management.Winui_Activities
         }
 
 
-        private void Logout(object sender, RoutedEventArgs e)
+        private async void Logout(object sender, RoutedEventArgs e)
         {
+            var dialog = new ContentDialog
+            {
+                Title = "Logout",
+                Content = "Are you sure you want to log out?",
+                PrimaryButtonText = "Yes",
+                CloseButtonText = "Cancel",
+                XamlRoot = this.XamlRoot
+            };
 
+            var result = await dialog.ShowAsync();
+            if (result == ContentDialogResult.Primary)
+            {
+                var localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values.Clear();
+
+                var rootFrame = (App.MainWindow.Content as Frame);
+                rootFrame!.Navigate(typeof(LoginPage));
+            }
 
         }
 

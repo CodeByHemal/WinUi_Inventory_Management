@@ -50,6 +50,7 @@ namespace WinUi_Inventory_Management.Winui_Activities
                     _ => typeof(DashboardPage)
                 };
 
+
                 if (pageType != null)
                     ContentFrame.Navigate(pageType,_loggedInUser);
             }

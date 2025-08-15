@@ -147,7 +147,7 @@
 
                             </TextBlock>
                             <TextBlock x:Name="P1"
-                Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
+                Text="0" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
                             </TextBlock>
                         </StackPanel>
@@ -176,7 +176,7 @@
 
                             </TextBlock>
                             <TextBlock x:Name="P2"
-                Text="500" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
+                Text="0" Style="{StaticResource TitleTextBlockStyle}" HorizontalAlignment="Center">
 
                             </TextBlock>
                         </StackPanel>
@@ -258,7 +258,7 @@
                     </ListView.ItemTemplate>
                 </ListView>
 
-
+                <TextBlock Grid.Row="1" x:Name="NoOrdersText" Text="No Orders Currently" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="{StaticResource BodyTextBlockFontSize}"  FontWeight="SemiBold" Visibility="Collapsed" />
             </Grid>
         </Grid>
     </ScrollViewer>

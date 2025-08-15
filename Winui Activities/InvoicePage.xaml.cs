@@ -70,10 +70,17 @@ namespace WinUi_Inventory_Management.Winui_Activities
             var localSetting = ApplicationData.Current.LocalSettings;
             var userId = int.Parse(localSetting.Values["UserId"].ToString());
             using var context = new AppDbContext();
-            return context.Orders
+            var Orders = context.Orders
                 .Include(o => o.Items)
                 .Where(o => o.UserId == userId)
                 .ToList();
+            if (Orders.Count == 0)
+            {
+                NoInvoices.Visibility = Visibility.Visible;
+                return new List<Order>();
+            }
+            NoInvoices.Visibility = Visibility.Collapsed;
+            return Orders;
         }
        
 

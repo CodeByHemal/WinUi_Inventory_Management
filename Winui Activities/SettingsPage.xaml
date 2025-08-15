@@ -24,15 +24,21 @@
 
         <Grid Grid.Row="2" Margin="0,30,0,0" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Grid.RowDefinitions>
-                <RowDefinition Height="100" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto"  />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
             </Grid.RowDefinitions>
-                <Button Click="PickAndSaveImage">
-                    <Image x:Name="ProfileImage" Source="/Assets/ProfileImage/profile_picture.png" Width="30" Height="30"/>
+                <Button Click="PickAndSaveImage" x:Name="ProfileBtn"  HorizontalAlignment="Center" Background="Transparent" BorderBrush="Transparent" BorderThickness="0" CornerRadius="0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <ContentPresenter HorizontalAlignment="Center"
+                              VerticalAlignment="Center"/>
+                        </ControlTemplate>
+                    </Button.Template>
+                    <Image x:Name="ProfileImage" Source="/Assets/ProfileImage/profile_picture.png" Width="100" Height="100"/>
                 </Button>
                 
                 <TextBox x:Name="Fullname" Grid.Row="1" Width="320" Header="Fullname" PlaceholderText="Hemal Rashiya" Margin="0,25,0,0"></TextBox>

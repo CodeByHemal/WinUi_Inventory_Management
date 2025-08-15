@@ -78,7 +78,14 @@ namespace WinUi_Inventory_Management.Winui_Activities
                 }
 
                 var existingOrder = _dbContext.Orders.FirstOrDefault(u => u.UserId == _loggedInUser.Id);
-                var totalProduct = _dbContext.OrderItems.Count(Orders => Orders.OrderId == existingOrder.Id);
+                if (existingOrder == null)
+                {
+                    P0.Text = "0";
+                    NoOrdersText.Visibility = Visibility.Visible;
+                    return; 
+                }
+                NoOrdersText.Visibility = Visibility.Collapsed;
+                var totalProduct = _dbContext.Orders.Count(Orders => Orders.UserId == _loggedInUser.Id);
                 var userTotalPrice = _dbContext.Orders
                     .Where(o => o.UserId == _loggedInUser.Id)
                     .Sum(o => o.TotalPrice);
@@ -127,8 +134,16 @@ namespace WinUi_Inventory_Management.Winui_Activities
             Orders = filtered.ToList();
             MyOrdersListView.ItemsSource = Orders; // ensure ListView refreshes
 
+            if (Orders.Count == 0)
+            {
+                NoOrdersText.Visibility = Visibility.Visible;
+                return;
+            }
+
+            NoOrdersText.Visibility = Visibility.Collapsed;
+
             // Update totals (P0, P1, P2) based on filtered data
-            var totalProduct = Orders.Sum(o => o.Items.Count);
+            var totalProduct = Orders.Count(Orders => Orders.UserId == _loggedInUser.Id);
             var userTotalPrice = Orders.Sum(o => o.TotalPrice);
             var userTotalDiscount = Orders.Sum(o => o.TotalDiscount);
 
@@ -143,10 +158,18 @@ namespace WinUi_Inventory_Management.Winui_Activities
             var localSetting = ApplicationData.Current.LocalSettings;
             var userId = int.Parse(localSetting.Values["UserId"].ToString());
             using var context = new AppDbContext();
-            return context.Orders
+            var Orders = context.Orders
                 .Include(o => o.Items)
                 .Where(o => o.UserId == userId)
                 .ToList();
+            if (Orders.Count == 0)
+            {
+                NoOrdersText.Visibility = Visibility.Visible;
+                return [];
+            }
+            NoOrdersText.Visibility = Visibility.Collapsed;
+            return Orders;
+
         }
 
         private void ApplyMonthFilter()
@@ -160,6 +183,12 @@ namespace WinUi_Inventory_Management.Winui_Activities
 
             Orders = filtered.ToList();
             MyOrdersListView.ItemsSource = Orders; // refresh x:Bind
+            if (Orders.Count == 0)
+            {
+                NoOrdersText.Visibility = Visibility.Visible;
+                return;
+            }
+            NoOrdersText.Visibility = Visibility.Collapsed;
         }
 
         private void MonthSelected(object sender, RoutedEventArgs e)
