@@ -2,10 +2,12 @@ using CommunityToolkit.Mvvm.Input;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Linq;
 using Windows.Networking.NetworkOperators;
+using Windows.Storage;
 using WinRT.WinUi_Inventory_ManagementVtableClasses;
 using WinUi_Inventory_Management.Models;
 using WinUi_Inventory_Management.ViewModels;
@@ -25,14 +27,32 @@ namespace WinUi_Inventory_Management.Winui_Activities
             _context = new AppDbContext();
         }
 
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if (e.Parameter is User user)
             {
                 _loggedInUser = user;
-                ProfileImage.Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(
-                 new Uri($"ms-appx:///Assets/ProfileImage/{_loggedInUser.ImageName}")
-                    );
+                try
+                {
+                    if (!string.IsNullOrEmpty(_loggedInUser.ImageName))
+                    {
+                        StorageFolder profileFolder = await ApplicationData.Current.LocalFolder.GetFolderAsync("ProfileImage");
+                        StorageFile imageFile = await profileFolder.GetFileAsync(_loggedInUser.ImageName);
+
+                        using var stream = await imageFile.OpenAsync(FileAccessMode.Read);
+                        BitmapImage bitmap = new BitmapImage();
+                        await bitmap.SetSourceAsync(stream);
+                        ProfileImage.Source = bitmap;
+                    }
+                    else
+                    {
+                        ProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ProfileImage/profile_picture.png"));
+                    }
+                }
+                catch
+                {
+                    ProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ProfileImage/profile_picture.png"));
+                }
             }
         }
 

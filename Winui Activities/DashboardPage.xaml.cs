@@ -4,6 +4,7 @@ using Microsoft.UI.Xaml.Controls.Primitives;
 using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
+using Microsoft.UI.Xaml.Media.Imaging;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Networking.NetworkOperators;
+using Windows.Storage;
 using WinUi_Inventory_Management.Models;
 
 // To learn more about WinUI, the WinUI project structure,
@@ -30,7 +32,7 @@ namespace WinUi_Inventory_Management.Winui_Activities
         {
             InitializeComponent();
         }
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
 
@@ -40,9 +42,27 @@ namespace WinUi_Inventory_Management.Winui_Activities
 
                 // Set data in UI
                 WelcomeText.Text = $"Welcome, {_loggedInUser.FullName}";
-                ProfileImage.Source = new Microsoft.UI.Xaml.Media.Imaging.BitmapImage(
-                 new Uri($"ms-appx:///Assets/ProfileImage/{_loggedInUser.ImageName}")
-                    );
+                try
+                {
+                    if (!string.IsNullOrEmpty(_loggedInUser.ImageName))
+                    {
+                        StorageFolder profileFolder = await ApplicationData.Current.LocalFolder.GetFolderAsync("ProfileImage");
+                        StorageFile imageFile = await profileFolder.GetFileAsync(_loggedInUser.ImageName);
+
+                        using var stream = await imageFile.OpenAsync(FileAccessMode.Read);
+                        BitmapImage bitmap = new BitmapImage();
+                        await bitmap.SetSourceAsync(stream);
+                        ProfileImage.Source = bitmap;
+                    }
+                    else
+                    {
+                        ProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ProfileImage/profile_picture.png"));
+                    }
+                }
+                catch
+                {
+                    ProfileImage.Source = new BitmapImage(new Uri("ms-appx:///Assets/ProfileImage/profile_picture.png"));
+                }
             }
         }
     }
